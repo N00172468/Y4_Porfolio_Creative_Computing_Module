@@ -1,0 +1,60 @@
+/* -------------- <GLOBAL> -------------- */
+body {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    list-style: none;
+    background-color: #161616;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: #FFD700;
+    text-decoration: none;
+}
+/* -------------- </GLOBAL> -------------- */
+
+
+/* -------------- <COLOUR THEME> -------------- */
+.primaryCol {
+    color: #161616;
+}
+
+.primaryColBackground {
+    background-color: #161616;
+}
+
+.secondaryCol {
+    color: #252525;
+}
+
+.secondaryColBackground {
+    background-color: #252525;
+}
+
+.tertiaryCol {
+    color: #f3f3f3;
+}
+
+.tertiaryColBackground {
+    color: #f3f3f3;
+}
+/* -------------- </COLOUR THEME> -------------- */
+
+
+/* -------------- <NAVBAR> -------------- */
+.navHead {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 20px;
+}
+
+.navHeadSpan {
+    color: #955cdb;
+}
+/* -------------- </NAVBAR> -------------- */
