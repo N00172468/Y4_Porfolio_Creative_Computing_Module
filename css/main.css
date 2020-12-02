@@ -81,9 +81,9 @@ a:hover {
 .firstName {
     font-family: 'Raleway', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 10px;
+    letter-spacing: 20px;
     text-align: center;
-    font-size: 52px;
+    font-size: 60px;
     color: #575757;
 }
 
@@ -108,7 +108,7 @@ a:hover {
 .info {
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 2px;
-    text-align: center;
+    text-align: end;
     font-size: 20px;
 }
 
@@ -117,7 +117,7 @@ a:hover {
 }
 @keyframes slide-right {
     from {
-      margin-right: -2750px;
+      margin-right: -3050px;
     }
   
     to {
@@ -130,7 +130,7 @@ a:hover {
 }
 @keyframes slide-left {
     from {
-      margin-left: -2750px;
+      margin-left: -3050px;
     }
   
     to {
