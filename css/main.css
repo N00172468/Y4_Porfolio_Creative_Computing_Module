@@ -19,6 +19,9 @@ a:hover {
 /* -------------- </GLOBAL> -------------- */
 
 
+
+
+
 /* -------------- <COLOUR THEME> -------------- */
 .primaryCol {
     color: #161616;
@@ -43,7 +46,18 @@ a:hover {
 .tertiaryColBackground {
     color: #f3f3f3;
 }
+
+.gold {
+    color: #FFD700;
+}
+
+.goldBackground {
+    background-color: #FFD700;
+}
 /* -------------- </COLOUR THEME> -------------- */
+
+
+
 
 
 /* -------------- <NAVBAR> -------------- */
@@ -58,6 +72,88 @@ a:hover {
     color: #955cdb;
 }
 /* -------------- </NAVBAR> -------------- */
+
+
+
+
+
+/* -------------- <SPLASH PAGE> -------------- */
+.firstName {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-align: center;
+    font-size: 52px;
+    color: #575757;
+}
+
+.lastName {
+    /* animation: color-change 4s infinite; */
+}
+
+/* @-webkit-keyframes color-change {
+    0% { color:  #955cdb; }
+    50% { color: #FFD700; }
+    100% { color: #955cdb; }
+} */
+
+.desc {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5.5px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.info {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.slide-right {
+    animation: slide-right 1.5s;
+}
+@keyframes slide-right {
+    from {
+      margin-right: -2750px;
+    }
+  
+    to {
+      margin-right: 0%;
+    }
+}
+
+.slide-left {
+    animation: slide-left 1.5s;
+}
+@keyframes slide-left {
+    from {
+      margin-left: -2750px;
+    }
+  
+    to {
+      margin-left: 0%;
+    }
+}
+
+.slide-up {
+    animation: slide-up 1.5s;
+}
+@keyframes slide-up {
+    from {
+      margin-top: 1750px;
+    }
+  
+    to {
+      margin-top: 0%;
+    }
+}
+/* -------------- </SPLASH PAGE> -------------- */
+
+
+
 
 
 /* -------------- <CARDS> -------------- */
@@ -75,6 +171,9 @@ a:hover {
     font-size: 16px;
 }
 /* -------------- </CARDS> -------------- */
+
+
+
 
 
 /* -------------- <BUTTONS> -------------- */
