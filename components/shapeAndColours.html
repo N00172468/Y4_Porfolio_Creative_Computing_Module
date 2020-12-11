@@ -76,7 +76,10 @@
 
                 <p class="card-text tertiaryCol cardBody">
                   A full-windowed canvas displaying the HSB Colour Model has been made to understand the difference between RGB and 
-                  HSB as well as how to utilise it appropriately.
+                  HSB as well as how to utilise it appropriately. 
+                  <br />
+                  <br />
+                  To program this, the colorMode() must be set to HSB while its hue and saturation are determined by the width and height of the canvas. A nested for() loop is then created to evenly spread out the colours.
                 </p>
 
                 <a href="./../js/shape_and_colours/Main Exercises/Ex.1_Looped_HSB/index.html" class="btn btnBackground">
@@ -103,8 +106,11 @@
                 <h5 class="card-title tertiaryCol cardTitle" style="text-align: end;">Interactive Looped HSB</h5>
 
                 <p class="card-text tertiaryCol cardBody" style="text-align: end;">
-                  This project replaces the static HSB canvas to follow the mouse curser. Through the user's interactivity, 
-                  this results in changing the scale of the canvas.
+                  Identical to the previous demonstration above however, this project replaces the static HSB canvas to follow the mouse curser. Through the user's interactivity, 
+                  this results in changing the scale of the canvas. 
+                  <br />
+                  <br />
+                  This is done by modifying the <span class="cyan">stepX</span> and <span class="cyan">stepY</span> variables to follow mouseX and mouseY. By doing this, the nested for() loop will then take the user's mouse curser into consideration.
                 </p>
 
                 <a href="./../js/shape_and_colours/Main Exercises/Ex.2_Looped_HSB_Interactive/index.html" class="btn btn-primary btnBackground float-right">
@@ -138,6 +144,12 @@
 
                 <p class="card-text tertiaryCol cardBody">
                   Similar objective to the projects above, this however, displays the HSB Colour Model in a radial manner. 
+                  <br />
+                  <br />
+                  This colour wheel is developed by utilising p5.js beginShape(TRIANGLE_FAN) and endShape() functions. 
+                  In between those two functions, the calculations of the coordinates is done by getting the sine & cosine of the angle then multiplying it by the preferred radius (i.e. <span class="cyan">let vx = radius * cos(a) + 250</span>).
+                  The variables <span class="cyan">vx</span> and <span class="cyan">vy</span> are then placed within the vertex() to create the radial fan. The variable for the angle is placed within the hue value of the fill() to display the HSB in a radial manner.
+
                 </p>
 
                 <a href="./../js/shape_and_colours/Main Exercises/Ex.3_Radial_Fan/index.html" class="btn btn-primary btnBackground">
@@ -198,8 +210,13 @@
                 <h5 class="card-title tertiaryCol cardTitle">HSB Colour Tool</h5>
 
                 <p class="card-text tertiaryCol cardBody">
-                  Using the practice of HSB and translations, this project consists of a simple 
+                  Using the practices of HSB and translations, this project consists of a simple 
                   interactive canvas tool. This tool will then help the user to understand the HSB Colour Model.
+                  <br />
+                  <br />
+                  The radial wheel is developed using the methods from the Radial Fan project however, the updating of colour is done by placing the mouseX within the fill() of the triangle fan (i.e. <span class="cyan">fill(mouseX - a, mouseX, 100)</span>). 
+                  Multiple mapped variables are also used to time the updates of each objects depending on where the user's mouse cursor is. For example: <span class="cyan">let slowChangeH = map(mouseX, 600, width, 0, 360)</span> = 
+                  once the user's cursor passes 600px on the x-axis of the canvas, begin to update the HSB values of the "hue" rectangle.
                 </p>
 
                 <a href="./../js/shape_and_colours/Main Exercises/Ex.5_Interactive_Colour_Tool/index.html" class="btn btn-primary btnBackground">
@@ -226,7 +243,11 @@
                 <h5 class="card-title tertiaryCol cardTitle" style="text-align: end;">Interpolation</h5>
 
                 <p class="card-text tertiaryCol cardBody" style="text-align: end;">
-                  This interesting canvas displays the interpolation of colours by using the P5.js function lerpColor().
+                  This abstract animated canvas displays the interpolation of colours by using the P5.js function lerpColor(). The user may change the interpolation ranges by moving their mouse cursor within the canvas.
+                  <br />
+                  <br />
+                  The spiral effect is developed by utilising beginShape() once again but with TRIANGLE_STRIP. Two spirals are created with their own inner and outer shapes. These are then animated by creating a rotation speed variable which is then used within the sine and cosine of each spirals to generate a new point per frame. These points are the cause of the abstract patterns.
+                  By adding a <span class="cyan">time</span> global variable then updating that variable by adding 0.005 seconds, this will then animate the spiral. To interpolate the colours, the starting & ending ranges are first mapped then placed within the fill() of the spirals.     
                 </p>
 
                 <a href="./../js/shape_and_colours/Main Exercises/Ex.6_Interpolation_Final_Attempt/index.html" class="btn btn-primary btnBackground float-right">
