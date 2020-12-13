@@ -79,7 +79,9 @@
                   contains a pattern of lines isolated within a circular perimeter. This project demonstrates the scaling of objects by using map() functions.
                   <br />
                   <br />
-                  
+                  This project also utilises tau (also known as two PI) which is used to equally divide the spacing between each line segments within the circumference. 
+                  How the user is able to change the stroke weight and length via their mouse cursor is due the map() functions. The radius is mapped for the width (x-axis) of the canvas 
+                  while the weight is mapped for the height (y-axis). An alpha value is also added in the background() to add the "motion blur" effect. 
                 </p>
 
                 <a href="./../js/shape_and_patterns/Main Exercises/Ex.1_Playing_With_Patterns/index.html" class="btn btnBackground">
@@ -105,7 +107,15 @@
               <div class="card-body">
                 <h5 class="card-title tertiaryCol cardTitle" style="text-align: end;">Trigonometry</h5>
 
-                <p class="card-text tertiaryCol cardBody" style="text-align: end;">An interactive version of Looped HSB. Replaced the static canvas to follow the mouse curser.</p>
+                <p class="card-text tertiaryCol cardBody" style="text-align: end;">
+                  This interactive project shows objects individually following the user's mouse cursor around
+                  the canvas. This also demonstrates the use of P5.js trigonometry function, atan2().
+                  <br />
+                  <br />
+                  The inverse tan calculation is used to create a function that allows the individual squares to follow the cursor 
+                  (i.e. <span class="cyan">let rotateVal = atan2(mouseY - transValY, mouseX - transValX); rotate(rotateVal);</span>).  
+                  Following the theme of "interpolation" from the previous chapter, the projects in this chapter also integrates the lerpColor() function to further add dynamic aesthetics. 
+                </p>
 
                 <a href="./../js/shape_and_patterns/Main Exercises/Ex.2.5_Trigonometry_Cont/index.html" class="btn btn-primary btnBackground float-right">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -134,9 +144,17 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title tertiaryCol cardTitle">Trigonometry Adv.</h5>
+                <h5 class="card-title tertiaryCol cardTitle">Trigonometry - Iteration 2</h5>
 
-                <p class="card-text tertiaryCol cardBody">Each circles has smaller circles in them to display the atan2() function. Calculating the scale value is also demonstrated within this demo.</p>
+                <p class="card-text tertiaryCol cardBody">
+                  Continuing on from the previous project, this iteration includes ellipses with smaller ellipses in each of them to further display the atan2() function. 
+                  Calculating the scale value is also demonstrated within this demo. 
+                  <br/>
+                  <br/>
+                  This project is essentially a combination of 
+                  <span style="font-family: 'Raleway', sans-serif; font-style: italic;">PLAYING WITH PATTERNS</span> and <span style="font-family: 'Raleway', sans-serif; font-style: italic;">TRIGONOMETRY</span>
+                  to create an interesting interactive pattern.
+                </p>
 
                 <a href="./../js/shape_and_patterns/Main Exercises/Ex.2.75_Trigonometry_Adv/index.html" class="btn btn-primary btnBackground">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -161,7 +179,16 @@
               <div class="card-body">
                 <h5 class="card-title tertiaryCol cardTitle" style="text-align: end;">Controlled-Randomised Pattern</h5>
 
-                <p class="card-text tertiaryCol cardBody" style="text-align: end;">A pattern of controlled-randomised objects demonstrating ordered-random. Includes a bespoke animation loop that displays a "pulsating" colour effect.</p>
+                <p class="card-text tertiaryCol cardBody" style="text-align: end;">
+                  A pattern of pseudo-randomised objects demonstrating ordered-random. This includes a bespoke animation loop that displays a "pulsating" colour effect.
+                  <br />
+                  <br />
+                  To develop this, a function must be created to choose either 0 and 1 only 
+                  (i.e. <span class="cyan">let randomNum = round(random(0, 1))</span>). This is then used in an if() and else() statements. For instance, if the chosen number 
+                  is 0, draw lines going to "this" direction, else draw lines to "that" direction. To prevent the canvas from looping continuously without using noLoop(), the P5.js 
+                  function randomSeed() is used. The value in the parameters of this function can be played around with until the desired pattern is displayed. To create the pulsating effect, 
+                  another if() and else() statements as well as booleans are used to determine the timing and speed of the animation. 
+                </p>
 
                 <a href="./../js/shape_and_patterns/Main Exercises/Ex.3_Controlled_Randomised_Pattern/index.html" class="btn btn-primary btnBackground float-right">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -192,7 +219,15 @@
               <div class="card-body">
                 <h5 class="card-title tertiaryCol cardTitle">Controlled-Randomised Pattern - Iteration 2</h5>
 
-                <p class="card-text tertiaryCol cardBody">A continuation of the previous demo but with a different pattern.</p>
+                <p class="card-text tertiaryCol cardBody">
+                  Identical in terms of functionality to the previous project, however, the objects are different and user interaction is considered.
+                  <br />
+                  <br />
+                  The lines are replaced with rectangles and pulsating ellipses, which is inspired by a combination of postmodern aesthetics and the 
+                  movement of a subwoofer speaker. The interaction is done by the user's mouse cursor. 
+                  This is done by using the scaling function demonstrated in the <span style="font-family: 'Raleway', sans-serif; font-style: italic;">TRIGONOMETRY</span> project.   
+                  The function is then implemented within the ellipses' x and y parameters to create the "waving" canvas effect.
+                </p>
 
                 <a href="./../js/shape_and_patterns/Main Exercises/Ex.3.5_Controlled_Randomised_Pattern_Part_2/index.html" class="btn btn-primary btnBackground">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +252,17 @@
               <div class="card-body">
                 <h5 class="card-title tertiaryCol cardTitle" style="text-align: end;">Patterned Wrapping Paper</h5>
 
-                <p class="card-text tertiaryCol cardBody" style="text-align: end;">A very challenging assignment that includes some of my understanding of pixel manipulation however, not fully.</p>
+                <p class="card-text tertiaryCol cardBody" style="text-align: end;">
+                  The last project of this chapter demonstrates the basic capabilities of pixel manipulation from an image.
+                  <br />
+                  <br />
+                  By calling the specific RGBA value of the image, a new value may then be implemented to change the particular colour (i.e. changing white to deep pink).
+                  Instead of looping through the same image within the grid, the <span class="cyan">imageArray[]</span> will allow that one image to be split into individual images. 
+                  In conjunction to this, the <span class="cyan">colourArray[]</span> allow us to change the colouring of each individual image within the grid.
+                  Instead of using a 2D array, the <span class="cyan">imageNumber</span> variable represents the first image within the grid.
+                  This is then incremented within the grid loop to count through all of the images (i.e. <span class="cyan">imageNumber++</span>). 
+                  This will allow the function of <span class="cyan">imageArray[i]</span> and <span class="cyan">colourArray[i]</span> to work within the pixel array.
+                </p>
 
                 <a href="./../js/shape_and_patterns/Main Exercises/Ex.4.5a_Wrapping_Paper_Rework_Final/index.html" class="btn btn-primary btnBackground float-right">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
