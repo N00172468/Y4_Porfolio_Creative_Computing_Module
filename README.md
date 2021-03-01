@@ -10,7 +10,7 @@
 
 ---
 
-## Chapter 1 - Shape & Colours
+## Chapter 1 - Shapes & Colours
 ### Looped HSB
 - A full-windowed canvas displaying the HSB Colour Model.
 
@@ -42,7 +42,7 @@
 
 ---
 
-## Chapter 2 - Shape & Patterns
+## Chapter 2 - Shapes & Patterns
 ### Playing with Shapes and Patterns
 - A pattern of lines isolated within a circular perimeter.
 - Practicing the use of `TWO_PI` - based on P5.js docs.
