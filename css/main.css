@@ -94,9 +94,9 @@ a:hover {
     color: #575757;
 }
 
-.lastName {
-    /* animation: color-change 4s infinite; */
-}
+/* .lastName {
+    animation: color-change 4s infinite;
+} */
 
 /* @-webkit-keyframes color-change {
     0% { color:  #955cdb; }
