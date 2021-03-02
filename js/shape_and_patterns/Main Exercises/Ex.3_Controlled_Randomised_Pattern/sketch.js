@@ -1,4 +1,4 @@
-let cWidth = 700;
+let cWidth = 1200;
 let numOfSquares = 20;
 let squareSize = cWidth/ numOfSquares;
 
@@ -27,8 +27,6 @@ function draw() {
             let transY = j * squareSize + squareSize / 2;
             
             let distance = dist(transX, transY, mouseX, mouseY);
-            // let scaleVal = map(distance, 0, cWidth, 15, squareSize * 2);
-            let scaleVal = map(distance, 0, cWidth, squareSize, 15);
             
             push();
                 let randomNum = round(random(0, 1)); // round(...) = Between Natural numbers of 0 and 1.
@@ -37,9 +35,6 @@ function draw() {
                 
                 noFill();
                 stroke(random(j) * random(t, - 0.09), random(i) * random(t, -0.09), numOfSquares - j);
-                
-                // Checking how long it would take for the animated color to reach the edge/corner of canvas:
-                // console.log('stroke!', t) 
 
                 if (randomNum == 0) {
                     line(0, 0, squareSize, squareSize);
@@ -61,10 +56,10 @@ function draw() {
      */
 
     // If reversing, set speed to -0.5 milliseconds. Else, set speed to 0.1 milliseconds.
-    t = t + ( reverse ? -0.5 : 0.1); // "Ease in - fast out" effect.
+    t = t + ( reverse ? -0.75 : 0.25); // "Ease in - fast out" effect.
     
     // Animation Loop:
-    if(t > 20) {
+    if(t > 5) {
         reverse = true
     }
     if(t < 0.05) {
