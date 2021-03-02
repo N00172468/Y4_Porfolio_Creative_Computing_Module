@@ -2,13 +2,14 @@
 
 function setup() {
     createCanvas(700, 700);
+    background(0, 0, 9);
 
     colorMode(HSB, 360, 100, 100); // Max. HSB
     smooth(); // Anti-aliasing
 }
 
 function draw() {
-    background(0 ,0, 0, 0.15);
+    background(0 ,0, 9, 0.15);
     stroke(0, 0, 100);
     // strokeWeight(1);
     
