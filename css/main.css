@@ -20,6 +20,7 @@ a:hover {
     text-decoration: none;
 }
 
+/* <CUSTOM SCROLLBAR> */
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
