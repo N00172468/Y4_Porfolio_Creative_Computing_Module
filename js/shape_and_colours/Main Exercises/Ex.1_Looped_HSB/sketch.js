@@ -2,7 +2,8 @@ rectLoop = 75;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background(0);
+    // createCanvas(windowWidth, windowHeight / 2);
+    background(22, 22, 22);
 
     // RGB to HSB:
     colorMode(HSB, width, height, 100); 
