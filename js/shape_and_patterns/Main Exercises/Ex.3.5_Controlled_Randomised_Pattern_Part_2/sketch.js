@@ -7,8 +7,8 @@ let t = 0;
 let reverse = false;
 
 function setup() {
-    // createCanvas(cWidth, cWidth);
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(cWidth, cWidth);
+    // createCanvas(windowWidth, windowHeight);
 
     colorMode(RGB, numOfSquares, numOfSquares, numOfSquares);
     smooth(); // Anti-aliasing
@@ -26,7 +26,7 @@ function draw() {
      * - Fine-tuning to keep objects as centred as possible when full-windowed mode.
     */
     // translate(width / 3.5, 0); // For Common Laptop Resolutions.
-    translate(width / 3.5, 80); // For Common Desktop Resolutions.
+    // translate(width / 3.5, 80); // For Common Desktop Resolutions.
 
     /**
      * LOOPED OBJECTS:
@@ -42,11 +42,7 @@ function draw() {
             
             push();
                 let randomNum = round(random(0, 1)); // round(...) = Between Natural numbers of 0 and 1.
-                
                 translate(transX, transY);
-                
-                // Checking how long it would take for the animated color to reach the edge/corner of canvas:
-                // console.log('stroke!', t) 
 
                 if (randomNum == 0) {
                     stroke(0);

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+          name="description"
+          content="Demonstrating the work done for the Creative Coding Module"
+        />
+        <meta name="keywords" content="HTML, CSS, JavaScript" />
+        <meta name="author" content="John Carlo M. Ramos" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        />
+    
+        <title>Controlled Randomised Patterns - Iteration 2</title>
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="./../../css/bootstrap.min.css" />
+    
+        <!-- Application CSS -->
+        <link type="text/css" rel="stylesheet" href="./../../css/main.css" />
+    
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+        <!-- Highlight.js CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <!-- and it's easy to individually load additional languages -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/go.min.js"></script>
+      </head>
+
+      <body style="overflow-x: hidden;">
+        <div class="container">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg tertiaryColBackground">
+                <a class="navbar-brand navHead">C.R.P - <span class="navHeadSpan">Iteration 2</span></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link" href="./../../index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link">|</a>
+                    </li>
+                    
+                    <li class="nav-item active">
+                    <a class="nav-link" href="./../shapeAndColours.html">Shapes & Colours <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link">|</a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="./../shapeAndPatterns.html">Shapes & Patterns</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                    <a class="nav-link">|</a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Concept of Agents</a>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+
+            <!-- JS Project -->
+            <div class="row">
+                <iframe 
+                    src="./../../js/shape_and_patterns/Main Exercises/Ex.3.5_Controlled_Randomised_Pattern_Part_2/index.html" 
+                    frameborder="0"
+                    scrolling="no"
+                    class="iFrameConfig"
+                >
+                </iframe>
+            </div>
+
+            <br />
+
+            <!-- Contents -->
+            <div class="row">
+                <div class="col-6">
+                    <p class="card-text tertiaryCol cardBody">
+                        The lines are replaced with rectangles and pulsating ellipses, which are inspired 
+                        by a combination of postmodern aesthetics and the movement of a subwoofer speaker. 
+                        The interaction is done by the user's mouse cursor. This is done by using the 
+                        scaling function demonstrated in the 
+                        <span style="font-family: 'Raleway', sans-serif; font-style: italic;">TRIGONOMETRY</span> 
+                        project. The function is then implemented within the ellipses' x and y parameters 
+                        to create the "waving" canvas effect.
+                    </p>
+
+                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_patterns/Main%20Exercises/Ex.3.5_Controlled_Randomised_Pattern_Part_2" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
+                        Link to Full Codes
+                    </a>
+                </div>
+
+                <div class="col-6">
+                    <pre><code class="js card-text cyan cardBody">
+                        for (let j = 0; j < numOfSquares; j++) {
+                            for (let i = 0; i < numOfSquares; i++) {
+                                let transX = i * squareSize + squareSize / 2;
+                                let transY = j * squareSize + squareSize / 2;
+                                
+                                let distance = dist(transX, transY, mouseX, mouseY);
+                                let scaleVal = map(distance, 0, cWidth, squareSize, 0);
+                                
+                                push();
+                                    let randomNum = round(random(0, 1)); // round(...) = Between Natural numbers of 0 and 1.
+                                    translate(transX, transY);
+                    
+                                    if (randomNum == 0) {
+                                        stroke(0);
+                                        fill(random(j) * random(t, - 0.09), random(i) * random(t, -0.09), numOfSquares - j);
+                                        rect(scaleVal, scaleVal, squareSize, squareSize);
+                                    } else {
+                                        noFill();
+                                        stroke(random(j) * random(t, - 0.09), random(i) * random(t, -0.09), numOfSquares - j);
+                                        ellipse(scaleVal, scaleVal, squareSize, squareSize);
+                                        
+                                        strokeWeight(t);
+                                        ellipse(scaleVal, scaleVal,squareSize / 2,squareSize / 2);
+                                    }
+                                pop();
+                            }
+                        }
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+      </body>
+</html>
