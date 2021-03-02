@@ -4,7 +4,7 @@ let radius = 200;
 
 function setup() {
     createCanvas(500, 500);
-    background(0);
+    background(0, 0, 9);
 
     colorMode(HSB, 360, 100, 100);
     angleMode(DEGREES);
@@ -12,7 +12,7 @@ function setup() {
 }
 
 function draw() {
-    background(0);
+    background(0, 0, 9);
     fill(200, 0, 0);
     let stepAngle = 360/numOfSegments;
 

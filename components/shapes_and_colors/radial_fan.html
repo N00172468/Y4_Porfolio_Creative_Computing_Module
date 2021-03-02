@@ -13,7 +13,7 @@
           content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
         />
     
-        <title>Looped HSB Canvas</title>
+        <title>Radial Fan</title>
     
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -37,7 +37,7 @@
         <div class="container">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg tertiaryColBackground">
-                <a class="navbar-brand navHead">Looped HSB <span class="navHeadSpan">Canvas</span></a>
+                <a class="navbar-brand navHead">Radial <span class="navHeadSpan">Fan</span></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -79,7 +79,7 @@
             <!-- JS Project -->
             <div class="row">
                 <iframe 
-                    src="./../../js/shape_and_colours/Main Exercises/Ex.1_Looped_HSB/index.html" 
+                    src="./../../js/shape_and_colours/Main Exercises/Ex.3_Radial_Fan/index.html" 
                     frameborder="0"
                     scrolling="no"
                     class="iFrameConfig"
@@ -93,38 +93,35 @@
             <div class="row">
                 <div class="col-6">
                     <p class="card-text tertiaryCol cardBody">
-                        This project has been made to understand the difference between RGB and 
-                        HSB as well as how to utilise it appropriately. 
-                        To program this, the colorMode() must be set to HSB while its hue and saturation
-                        are determined by the width and height of the canvas. A nested for() loop is then 
-                        created to evenly spread out the colours.
+                        This colour wheel is developed by utilising p5.js beginShape(TRIANGLE_FAN) and 
+                        endShape() functions. In between those two functions, the calculations of the 
+                        coordinates is done by getting the sine & cosine of the angle then multiplying it
+                        by the preferred radius (i.e. <span class="cyan">let vx = radius * cos(a) + 250</span>).
+                        The variables <span class="cyan">vx</span> and <span class="cyan">vy</span> are then 
+                        placed within the vertex() to create the radial fan. The variable for the angle is 
+                        placed within the hue value of the fill() to display the HSB in a radial manner.
                     </p>
 
-                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_colours/Main%20Exercises/Ex.1_Looped_HSB" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
+                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_colours/Main%20Exercises/Ex.3_Radial_Fan" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
                         Link to Full Codes
                     </a>
                 </div>
 
                 <div class="col-6">
                     <pre><code class="js card-text cyan cardBody">
-                        function setup() {
-                            // RGB to HSB:
-                            colorMode(HSB, width, height, 100); 
-                        }
+                        let stepAngle = 360/numOfSegments;
 
-                        function draw() {
-                            // HSB Canvas:
-                            let stepX = 15;
-                            let stepY = 15;
-
-                            for (let y = 0; y < height; y = y + stepY) {
-                                for (let x = 0; x < width; x = x + stepX) {
-                                    noStroke();
-                                    fill(x, height - y, 100);
-                                    rect(x, y, stepX, stepY);
-                                }
+                        // Begin Triangle Fan (based on P5.js docs.):
+                        beginShape(TRIANGLE_FAN);
+                            // vertex(250, 250); // Centre of diameter (Static)
+                            vertex(mouseX, mouseY); // Mouse cursor is Centre of diameter (Interactive)
+                            for (let a = 0; a <= 360; a += stepAngle) {
+                                let vx = radius * cos(a) + 250;
+                                let vy = radius * sin(a) + 250;
+                                fill(a, 100, 100); // Created Radial Colour Hue (HSB variant)
+                                vertex(vx, vy);
                             }
-                        }
+                        endShape(CLOSE);
                     </code></pre>
                 </div>
             </div>
