@@ -2,10 +2,10 @@
  * Variables for Radial Fan:
  */
 numOfSegments = 360;
-radius = 200;
+radius = 125;
 
 function setup() {
-    createCanvas(1200, 540);
+    createCanvas(1140, 450);
 
     colorMode(HSB, 360, 100, 100); // Max. HSB
     angleMode(DEGREES);
@@ -31,10 +31,10 @@ function draw() {
      * (`TRIANGLE_FAN` based on P5.js)
      */
     beginShape(TRIANGLE_FAN);
-        vertex(300, 300); // Centre of diameter (Static)
+        vertex(275, 275); // Centre of diameter (Static)
         for (let a = 0; a <= 360; a += stepAngle) {
-            let vx = radius * cos(a) + 300;
-            let vy = radius * sin(a) + 300;
+            let vx = radius * cos(a) + 275;
+            let vy = radius * sin(a) + 275;
             fill(mouseX - a, mouseX, 100); // Interactive Radial Colour Hue (HSB variant)
             vertex(vx, vy);
         }
@@ -59,7 +59,7 @@ function draw() {
 
     fill(slowChangeH, mouseX, mouseX);
     translate(700, 100);
-    rect(0, 0, 25, 400);
+    rect(0, 0, 25, 300);
     pop();
 
     /**
@@ -69,11 +69,11 @@ function draw() {
     textSize(24);
     textAlign(CENTER, CENTER);
     fill(282, slowChangeS, mouseX);
-    text('Saturation', 912, 50);
+    text('Saturation', 872, 50);
  
     fill(282, slowChangeS, mouseX);
-    translate(900, 100);
-    rect(0, 0, 25, 400);
+    translate(855, 100);
+    rect(0, 0, 25, 300);
     pop();
 
     /**
@@ -83,10 +83,10 @@ function draw() {
     textSize(24);
     textAlign(CENTER, CENTER);
     fill(64, mouseX, slowChangeB);
-    text('Brightness', 1112, 50);
+    text('Brightness', 1012, 50);
  
     fill(55, mouseX, slowChangeB);
-    translate(1100, 100);
-    rect(0, 0, 25, 400);
+    translate(1000, 100);
+    rect(0, 0, 25, 300);
     pop();
 }
