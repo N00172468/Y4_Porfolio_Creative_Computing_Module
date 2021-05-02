@@ -93,45 +93,54 @@
             <div class="row">
                 <div class="col-6">
                     <p class="card-text tertiaryCol cardBody">
-                        This project utilises tau (also known as two PI) which is used to equally divide 
-                        the spacing between each line segments within the circumference. 
-                        How the user is able to change the stroke weight and length via their mouse 
-                        cursor is due the map() functions. The radius is mapped for the width (x-axis) of the canvas 
-                        while the weight is mapped for the height (y-axis). An alpha value is also added 
-                        in the background() to add the "motion blur" effect.
+                        Two agents must be drawn out first to activate the checking algorithm.
+                        Once the two points has been drawn out, their x and y positions as well
+                        as their radius are stored in an array. The data of each agents stored within those arrays
+                        are then used to check which of the agents are the closest.Once the calculation has been done,
+                        it then renders out an agent with randomised parameter values within the perimeter of the previous drawn out agent.
+                        This then repeats until the limit of agents has been met. 
                     </p>
 
-                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_patterns/Main%20Exercises/Ex.1_Playing_With_Patterns" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
+                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/concept_of_agents/Main%20Exercises/Ex.9_Growth_Density_Agents" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
                         Link to Full Codes
                     </a>
                 </div>
 
                 <div class="col-6">
                     <pre><code class="js card-text cyan cardBody">
-                        // Mapped Variables:
-                        let dynamicSegments = map(mouseX, -width, width, 6, 20);
-                        let segmentLength = abs(map(mouseX, 0, width, -100, 100));
-                        let segmentWeight = map(mouseY, height, 0, 1, 10);
+                        // create a random set of parameters
+                        let nextPointRadius = random(5, 25);
+                        let nextPointXPos = random(nextPointRadius, width - nextPointRadius);
+                        let nextPointYPos = random(nextPointRadius, height - nextPointRadius);
 
-                        let stepAngle = TWO_PI / dynamicSegments; // Equally divide the spacing between segments within the circumference.
-
-                        // Setting colours for interpolation:
-                        let fromColour = color(179, 100, 75); // Start of range
-                        let toColour = color(299, 100, 90); // End of range
-
-                        /**
-                        * DRAW OBJECTS:
-                        */
-                        for (let i = 0; i <= dynamicSegments; i += stepAngle) {
-                            push();
-                                translate(width / 2, height / 2);
-                                rotate(i);
-
-                                stroke(lerpColor(fromColour, toColour, i / dynamicSegments)); 
-                                strokeWeight(segmentWeight);
-                                line(0, 0, segmentLength, segmentLength);
-                            pop();
+                        let nearestPoint = Number.MAX_VALUE;
+                        let moveToNewPos = 0;
+                        // Which object is the closest?
+                        for (let i = 0; i < currentPoint; i++) {
+                            let nextPoint = dist(nextPointXPos, nextPointYPos, xPos[i], yPos[i]);
+                            
+                            if (nextPoint < nearestPoint) {
+                            nearestPoint = nextPoint;
+                            moveToNewPos = i;
+                            }
                         }
+
+                        // aline it to the closest circle outline
+                        let angle = atan2(nextPointYPos - yPos[moveToNewPos], nextPointXPos - xPos[moveToNewPos]);
+
+                        xPos[currentPoint] = xPos[moveToNewPos] + cos(angle) * (radius[moveToNewPos] + nextPointRadius);
+                        yPos[currentPoint] = yPos[moveToNewPos] + sin(angle) * (radius[moveToNewPos] + nextPointRadius);
+                        radius[currentPoint] = nextPointRadius;
+                        currentPoint++;
+
+                        // draw them
+                        for (let i = 0; i < currentPoint; i++) {
+                            noStroke();
+                            fill(50 + i, 0, currentPoint + i);
+                            rect(xPos[i], yPos[i], radius[i] * 2, radius[i] * 2);
+                        }
+
+                        if (currentPoint >= numOfPoints) noLoop();
                     </code></pre>
                 </div>
             </div>
