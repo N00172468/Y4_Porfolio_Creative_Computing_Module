@@ -77,3 +77,29 @@
 ---
 
 ## Chapter 3 - Concept of Agents
+### Advanced Agents
+- Ten controlled randomised agents with a set alpha value to give it an illusion of having more objects.
+- Teaches the student the concept of agents by allowing them to develop the dynamic movements and characteristics of those agents.
+- Includes several interaction options to display various animations.
+
+### Line Agency
+- Demonstrates an animated intelligent version of an agent.
+- An algorithm has been created to determine the scalable value of angles for each canvas boundary.
+    - i.e. Once the agent bounces from a specific angle within a specific place from the canvas walls, the agent will then adjust its trajectory appropriate to the angle.
+
+### Curve Vertex
+- An interactive canvas that uses agents as "invisible guides" to draw curve vertexes.
+- Demonstrates the manipulation of vector points.
+
+### Growth Density
+- An animated canvas which demonstrates an algorithm that checks which agent is closer to one another.
+- Once the calculation finds the closest agent, it then draws another one around its perimeter.
+
+### Letter Forming
+- A demonstration of font manipulation using agents as guides for the pathing.
+- Additional library such as opentype.js is used in conjunction with P5.js to preload and build the font characters using their data types.
+
+### Production Demonstration (CA2)
+- Using the combination of the previous projects, a production demonstration was created for a music track.
+- Various libraries and built-in functions such as P5.FTT and P5.Aplitude for audio as well as P5.GUI for additional user interactions were used to create this project.
+- Track used was "Galvanize" by The Chemical Brothers.  
