@@ -6,10 +6,6 @@ class Agent {
     this.acc = createVector();
     this.maxSpeed = 12;
     this.maxForce = 1.3;
-
-    this.angle = 0;
-    this.dir = createVector(cos(this.angle), sin(this.angle));
-    this.speed = random(0, 5, 2);
   }
 
 
@@ -43,7 +39,7 @@ class Agent {
       strokeWeight(strokeThickness / 5);
       stroke(0);
 
-      rect(this.pos.x, this.pos.y, agentSize + rms * amplitudeLevel, agentSize + rms * amplitudeLevel);
+      rect(this.pos.x, this.pos.y, agentSize + rms * amplitudeLevel, agentSize + rms * amplitudeLevel); // Connecting agentSize and the rms by the amplitude level will allow the agents to "dance" to the beat of the track.
       } else {
       stroke(255);
       rect(this.pos.x, this.pos.y, agentSize, agentSize);
@@ -57,18 +53,16 @@ class Agent {
    * ------------- BEHAVIOUR FUNCTION: -------------
    */
   behaviours() {
+    // Agents finding and "flocking" their places:
     let arrive = this.arriveAtPlace(this.target);
-    // let flowArrive = this.flowToPlace(this.target);
     arrive.mult(1); // Weight of agents flocking
     this.applyForce(arrive);
-    // this.applyForce(flowArrive);
 
+    // Agents "flying away" from their places:
     let mouseInteraction = createVector(mouseX, mouseY);
     let fly = this.flyAway(mouseInteraction);
-    // let flowFly = this.flowToPlace(mouseInteraction);
     fly.mult(10); // Weight of agents flying away
     this.applyForce(fly);
-    // this.applyForce(flowFly);
   }
 
 
@@ -95,6 +89,7 @@ class Agent {
     if (dist < 100) {
       speed = map(dist, 0, 100, 0, this.maxSpeed);
     }
+    
     wantedVel.setMag(speed);
 
     let flock = p5.Vector.sub(wantedVel, this.vel);
@@ -122,22 +117,5 @@ class Agent {
     } else {
       return createVector(0, 0);
     }
-  }
-
-
-
-  /**
-   * ------------- FLOWFIELD FUNCTION: -------------
-   */
-  flowToPlace() {
-    let angle = noise(this.pos.x/noiseScale, this.pos.y/noiseScale, frameCount/noiseScale) * TWO_PI * noiseStrength; // 0 - Two PI
-    this.dir.x = cos(angle);
-    this.dir.y = sin(angle);
-    let vel = this.dir.copy();
-    let dist = 1;
-    vel.mult(this.speed * dist);
-    this.pos.add(vel);
-
-    return createVector(0, 0);
   }
 }
