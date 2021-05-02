@@ -93,42 +93,56 @@
             <div class="row">
                 <div class="col-6">
                     <p class="card-text tertiaryCol cardBody">
-                        Calculating the scale value is also demonstrated within this demo. 
-                        This project is essentially a combination of 
-                        <span style="font-family: 'Raleway', sans-serif; font-style: italic;">PLAYING WITH PATTERNS</span> and <span style="font-family: 'Raleway', sans-serif; font-style: italic;">TRIGONOMETRY</span>
-                        to create an interesting interactive pattern.
+                        The Letter Forming project displays an algorithm that allows for the distribution of characters 
+                        using the position of the vectors. The opentype.js library is used to preload the font characters
+                        as well as giving the ability to manipulate its points for pathing.  
                     </p>
 
-                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_patterns/Main%20Exercises/Ex.1_Playing_With_Patterns" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
+                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/concept_of_agents/Main%20Exercises/Ex.11_Letter_Form" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
                         Link to Full Codes
                     </a>
                 </div>
 
                 <div class="col-6">
                     <pre><code class="js card-text cyan cardBody">
-                        for (let j = 0; j < numOfSquares; j++) {
-                            for (let i = 0; i < numOfSquares; i++) {
-                                let transX = i * squareSize + squareSize / 2;
-                                let transY = j * squareSize + squareSize / 2;
+                        if (!font) return;
                     
-                                let distance = dist(transX, transY, mouseX, mouseY);
-                                // let scaleVal = map(distance, 0, cWidth, 15, squareSize * 2);
-                                let scaleVal = map(distance, 0, cWidth, squareSize, 15);
-                    
-                                push();
-                                    translate(transX, transY);
-                                    
-                                    let rotateVal = atan2(mouseY - transY, mouseX - transX);
-                                    rotate(rotateVal);
-                    
-                                    // noStroke();
-                                    fill(i, 0, numOfSquares - j);
-                                    ellipse(0, 0, scaleVal, scaleVal);
-                                    // noStroke();
-                                    stroke(180);
-                                    ellipse(10, 0, squareSize / 4, squareSize / 4);
-                                pop();
+                        translate(width/4.5,height/1.2);
+                        fontPath = font.getPath(text, 0, 0, 400); // text, x offset, y offset, fontsize
+                        path = new g.Path(fontPath.commands);
+                        pathArray = path.commands;
+                        
+                        // Taking out resampling will get all z points again
+                        // path = g.resampleByAmount(path, 500); // change amount of pathing points
+                        // path = g.resampleByLength(path, 10); // change amount of pathing points
+                        
+                        for (let i = 0; i < pathArray.length; i++) {
+                            if (pathArray[i].type == "Z") {
+                            twoDArr.push(pathArray.slice(startingShape + 1, i)) // slice() = JS array funct. that allows to return the start & end of the objects within the array. 
+                            startingShape = i;
                             }
+                        }
+                        }
+                    
+                        for (let i = 0; twoDArr.length; i++) {
+                        beginShape();
+                        
+                        for (let j = 0; j < twoDArr[i].length; j++) {
+                            // If no previous shape, do nothing
+                            if (i == 0) { 
+                            }
+                            // Else, check if next shape starts further right than last
+                            else if (twoDArr[i][j].x > twoDArr[i - 1][0].x) { 
+                            fill(0);
+                            }
+                    
+                            if (twoDArr[i][j].type == "L") {
+                            vertex(twoDArr[i][j].x, twoDArr[i][j].y);
+                            } else {
+                            vertex(twoDArr[i][j].x, twoDArr[i][j].y);
+                            }
+                        }
+                        endShape(CLOSE);
                         }
                     </code></pre>
                 </div>
