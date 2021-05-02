@@ -93,36 +93,50 @@
             <div class="row">
                 <div class="col-6">
                     <p class="card-text tertiaryCol cardBody">
-                        By calling the specific RGBA value of the image, a new value may then be implemented to 
-                        change the particular colour (i.e. changing white to deep pink).
-                        Instead of looping through the same image within the grid, the 
-                        <span class="cyan">imageArray[]</span> will allow that one image to be split 
-                        into individual images. In conjunction to this, the <span class="cyan">colourArray[]</span> 
-                        allow us to change the colouring of each individual image within the grid.
-                        Instead of using a 2D array, the <span class="cyan">imageNumber</span> variable 
-                        represents the first image within the grid. This is then incremented within the grid 
-                        loop to count through all of the images (i.e. <span class="cyan">imageNumber++</span>). 
-                        This will allow the function of <span class="cyan">imageArray[i]</span> and 
-                        <span class="cyan">colourArray[i]</span> to work within the pixel array.
+                        Controls: 
+                        <br />
+                        <br />
+                        Hovering the mouse cursor on the canvas will make the vector agents follow.
+                        <br />
+                        <br />
+                        Click Left Mouse Button = Activate vertex distortion.
+                        <br />
+                        <br />
+                        Click Middle Mouse Button = Disable vertex distortion.
+                    </p>
+                    
+                    <hr style="background-color: #FFD700;" />
+                    
+                    <p class="card-text tertiaryCol cardBody">
+                        A class has been made to contain the vector agents as well as the curve vertexes. 
+                        This project demonstrates a constant creation of new sine waves to each vertexes as time goes.
+                        To do this, the angle (in radians) are calculated and then used to create segments of the circle.
+                        For each curve vertexes, they must have "Control Points" to shape the desired object. 
+                        Those Control Points are represented as the first few and last few vector points.
                     </p>
 
-                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_patterns/Main%20Exercises/Ex.4.5_Wrapping_Paper_Rework_Final" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
+                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/concept_of_agents/Main%20Exercises/Ex.8_CurveVertex_Class" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
                         Link to Full Codes
                     </a>
                 </div>
 
                 <div class="col-6">
                     <pre><code class="js card-text cyan cardBody">
-                        /**
-                        * - Check for Black pixels, then change colour: 
-                        */ 
-                        if (imageArray[imageNumber].pixels[index] == 0 && imageArray[imageNumber].pixels[index + 1] == 0 && imageArray[imageNumber].pixels[index + 2] == 0) {
-                        
-                            imageArray[imageNumber].pixels[index] = colorArray[imageNumber];
-                            imageArray[imageNumber].pixels[index + 1];
-                            imageArray[imageNumber].pixels[index + 2] = colorArray[imageNumber];
-                            imageArray[imageNumber].pixels[index + 3];
-                        }
+                        beginShape();
+                            // 1st = 1st control points / Last = 2nd control points
+                            curveVertex(this.vectorPoints[this.vectorPoints.length - 1].x + this.centreX, this.vectorPoints[this.vectorPoints.length - 1].y + this.centreY);
+
+                            for (let i = 0; i < this.vectorPoints.length; i++) {
+                                curveVertex(this.vectorPoints[i].x + this.centreX, this.vectorPoints[i].y + this.centreY);
+                            }
+                            
+                            curveVertex(this.vectorPoints[0].x + this.centreX, this.vectorPoints[0].y + this.centreY);  
+                            curveVertex(this.vectorPoints[1].x + this.centreX, this.vectorPoints[1].y + this.centreY);
+
+                            // Adds or subtracts random step to x & y on vector points
+                            this.vectorPoints[round(random(0, this.vectorPoints.length - 1))].x += random(-stepX, stepX);
+                            this.vectorPoints[round(random(0, this.vectorPoints.length - 1))].y += random(-stepY, stepY);
+                        endShape();
                     </code></pre>
                 </div>
             </div>
