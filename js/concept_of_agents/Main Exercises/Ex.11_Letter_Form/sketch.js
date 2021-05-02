@@ -1,7 +1,7 @@
 let font;
 let fontPath;
 let path;
-let text = "VLN";
+let text = "VIE";
 let pathArray;
 let twoDArr = [];
 
@@ -30,7 +30,8 @@ function draw() {
   if (startingShape) {
     if (!font) return;
 
-    fontPath = font.getPath(text, 0, 550, 400); // text, x offset, y offset, fontsize
+    translate(width/4.5,height/1.2);
+    fontPath = font.getPath(text, 0, 0, 400); // text, x offset, y offset, fontsize
     path = new g.Path(fontPath.commands);
     pathArray = path.commands;
     
