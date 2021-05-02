@@ -2,17 +2,18 @@ let xPos = 0;
 let yPos = 0;
 let stepSize = 1;
 let angle = 45;
-let objSpeed = 5;
+let objSpeed = 15;
 
-let angleCount = 5;
-let thickness = 2;
+let angleCount = 6;
+let thickness = 1;
 
 /**
  * SETUP FUNCTION:
  */
 function setup() {
     // createCanvas(windowWidth, windowHeight);
-    createCanvas(500, 500);
+    // createCanvas(500, 500);
+    createCanvas(500, windowHeight);
     background(0);
 
     smooth();
@@ -44,7 +45,7 @@ function animation() {
     // translate(width/2, height/2);
 
     for (let i = 0; i < objSpeed; i++) {
-        stroke(255);
+        stroke(objSpeed * i, objSpeed * i, 0 * i);
         strokeWeight(thickness);
         point(xPos, yPos);
 
