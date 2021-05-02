@@ -13,7 +13,7 @@
           content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
         />
     
-        <title>Intelligent Agent</title>
+        <title>Line Agency</title>
     
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -37,7 +37,7 @@
         <div class="container">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg tertiaryColBackground">
-                <a class="navbar-brand navHead">Intelligent <span class="navHeadSpan">Agent</span></a>
+                <a class="navbar-brand navHead">Line <span class="navHeadSpan">Agency</span></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -93,37 +93,38 @@
             <div class="row">
                 <div class="col-6">
                     <p class="card-text tertiaryCol cardBody">
-                        To develop this, a function must be created to choose either 0 and 1 only 
-                        (i.e. <span class="cyan">let randomNum = round(random(0, 1))</span>). This is then used 
-                        in an if() and else() statements. For instance, if the chosen number 
-                        is 0, draw lines going to "this" direction, else draw lines to "that" direction. 
-                        To prevent the canvas from looping continuously without using noLoop(), the P5.js 
-                        function randomSeed() is used. The value in the parameters of this function can be 
-                        played around with until the desired pattern is displayed. To create the pulsating effect, 
-                        another if() and else() statements as well as booleans are used to determine the timing 
-                        and speed of the animation.
+                        The Line Agency project is a single agent algorithm that determines the scalable value
+                        of angles for each canvas boundary (i.e. the walls of the canvas). To determine the angle,
+                        trigonometry is applied to calculate the agent's trajectory  
+                        (i.e. <span class="cyan">xPos += cos(radians(angle)) * stepSize;</span>). In conjunction to this,
+                        a function with conditional statements are also used. Within those statements are the set trajectory
+                        which are triggered once the agent has landed on the appropriate angle.  
                     </p>
 
-                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_patterns/Main%20Exercises/Ex.3_Controlled_Randomised_Pattern" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
+                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/concept_of_agents/Main%20Exercises/Ex.4_Intelligent_Agent" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
                         Link to Full Codes
                     </a>
                 </div>
 
                 <div class="col-6">
                     <pre><code class="js card-text cyan cardBody">
-                        push();
-                            let randomNum = round(random(0, 1)); // round(...) = Between Natural numbers of 0 and 1.
-                            translate(transX, transY);
-                            
-                            noFill();
-                            stroke(random(j) * random(t, - 0.09), random(i) * random(t, -0.09), numOfSquares - j);
+                        let randomAngle = floor(random(0, 180));
+    
+                        if (_x > width) {
+                            return randomAngle + 90;
+                        }
 
-                            if (randomNum == 0) {
-                                line(0, 0, squareSize, squareSize);
-                            } else {
-                                line(0, squareSize, squareSize, 0);
-                            }
-                        pop();
+                        if (_x < 0) {
+                            return randomAngle + 270;
+                        }
+
+                        if (_y > height) {
+                            return randomAngle + 180;
+                        }
+
+                        if (_y < 0) {
+                            return randomAngle;
+                        }
                     </code></pre>
                 </div>
             </div>
