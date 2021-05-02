@@ -93,47 +93,85 @@
             <div class="row">
                 <div class="col-6">
                     <p class="card-text tertiaryCol cardBody">
-                        The lines are replaced with rectangles and pulsating ellipses, which are inspired 
-                        by a combination of postmodern aesthetics and the movement of a subwoofer speaker. 
-                        The interaction is done by the user's mouse cursor. This is done by using the 
-                        scaling function demonstrated in the 
-                        <span style="font-family: 'Raleway', sans-serif; font-style: italic;">TRIGONOMETRY</span> 
-                        project. The function is then implemented within the ellipses' x and y parameters 
-                        to create the "waving" canvas effect.
+                        Controls: 
+                        <br />
+                        <br />
+                        Hold Left Mouse Button = Randomly change the diameter and step distance of the agents in a subtle way.
+                        <br />
+                        <br />
+                        Hold Middle Mouse Button = Randomly change the diameter and step distance of the agents in a dramatic way. 
+                        <br />
+                        <br />
+                        Press Left Arrow Key = Set agent amount to 10. 
+                        <br />
+                        <br />
+                        Press Right Arrow Key = Set agent amount to 100. 
+                        <br />
+                        <br />
+                        Press Up Arrow Key = Set alpha to 10%. 
+                        <br />
+                        <br />
+                        Press Down Arrow Key = Set alpha to 100%. 
+                        <br />
+                        <br />
+                        Mix & match these configurations to get different animations. 
+                    </p>
+                    
+                    <hr style="background-color: #FFD700;" />
+                    
+                    <p class="card-text tertiaryCol cardBody">
+                        The purpose of this project is to allow the student to get an understanding of the concepts of agents. To begin with,
+                        the agent must have a set of probabilities of directions of which they can move to.
+                        Those array of probabilities are then called out as a variable with randomised parameter values to be used to determine the directions of the agents.  
+                        For instance, the global variable <span class="cyan">let optionsX = [-1, -1, 1, 1, 1, 1];</span> describes the agents having a 4/6 (66.67%) chance of moving to the right.
                     </p>
 
-                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_patterns/Main%20Exercises/Ex.3.5_Controlled_Randomised_Pattern_Part_2" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
+                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/concept_of_agents/Main%20Exercises/Ex.3_Adv_Agent" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
                         Link to Full Codes
                     </a>
                 </div>
 
                 <div class="col-6">
                     <pre><code class="js card-text cyan cardBody">
-                        for (let j = 0; j < numOfSquares; j++) {
-                            for (let i = 0; i < numOfSquares; i++) {
-                                let transX = i * squareSize + squareSize / 2;
-                                let transY = j * squareSize + squareSize / 2;
-                                
-                                let distance = dist(transX, transY, mouseX, mouseY);
-                                let scaleVal = map(distance, 0, cWidth, squareSize, 0);
-                                
-                                push();
-                                    let randomNum = round(random(0, 1)); // round(...) = Between Natural numbers of 0 and 1.
-                                    translate(transX, transY);
+                        for (let i = 0; i < objAmt; i++) {
+                            //Choose a value from each array:
+                            let randomPosX = floor(random(0, optionsX.length));
+                            let randomPosY = floor(random(0, optionsY.length));
+                        
+                            // Move the Objects:
+                            xPos += optionsX[randomPosX] * stepSize;
+                            yPos += optionsY[randomPosY] * stepSize;
+                        
+                            // If objects is greater than the width & height, transfer objects to the appropriate opposite sides of canvas borders (and vice versa).  
+                            xPos > width ? xPos = 0 : null; 
+                            xPos < 0 ? xPos = width : null; 
+                            yPos > height ? yPos = 0 : null;
+                            yPos < 0 ? yPos = height : null;
                     
-                                    if (randomNum == 0) {
-                                        stroke(0);
-                                        fill(random(j) * random(t, - 0.09), random(i) * random(t, -0.09), numOfSquares - j);
-                                        rect(scaleVal, scaleVal, squareSize, squareSize);
-                                    } else {
-                                        noFill();
-                                        stroke(random(j) * random(t, - 0.09), random(i) * random(t, -0.09), numOfSquares - j);
-                                        ellipse(scaleVal, scaleVal, squareSize, squareSize);
-                                        
-                                        strokeWeight(t);
-                                        ellipse(scaleVal, scaleVal,squareSize / 2,squareSize / 2);
-                                    }
-                                pop();
+                            // Additional Probability Function (50/50) - To Draw Objects.
+                            let randomNum = round(random(0, 1));
+                            if (randomNum == 0) {
+                                noStroke();
+                                fill(17, 100, 100); // Blue-Green Fill
+                                ellipse(xPos, yPos, diameter, diameter);
+                            } else {
+                                noFill();
+                                strokeWeight(2);
+                                stroke(277, 100, 100); // Red Stroke
+                                ellipse(xPos, yPos, diameter, diameter);
+                            }
+                        
+                            // Interactions with Mouse Keys:
+                            if (mouseIsPressed) {
+                                if (mouseButton === LEFT) {
+                                    stepSize = random(20, 50);
+                                    diameter = random(10, 20);
+                                }
+                            
+                                if (mouseButton === CENTER) {
+                                    stepSize = 60;
+                                    diameter = random(20, 90);
+                                }
                             }
                         }
                     </code></pre>
