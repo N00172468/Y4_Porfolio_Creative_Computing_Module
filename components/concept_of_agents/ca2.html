@@ -93,34 +93,138 @@
             <div class="row">
                 <div class="col-6">
                     <p class="card-text tertiaryCol cardBody">
-                        The inverse tan calculation is used to create a function that allows the individual 
-                        squares to follow the cursor (i.e. <span class="cyan">let rotateVal = 
-                        atan2(mouseY - transValY, mouseX - transValX); rotate(rotateVal);</span>).  
-                        Following the theme of "interpolation" from the previous chapter, the projects in 
-                        this chapter also integrates the lerpColor() function to further add dynamic aesthetics. 
+                        To get the pathing and array of points, 
+                        the P5 function known as textToPoints() is used which simplifies 
+                        the pathing of the array of the points for the texts.
+                        A class has then been created for the agents to contain their random starting positions, velocity, target, 
+                        render functions, etc. The important function for this however is the behaviour function which determines 
+                        how the agents finds their places and how they would react once the user hovers their cursor on them. 
+                        This is done by using the flocking or steering algorithm. There are two sub-functions called into the behaviour 
+                        function which both takes in on what is called a “desired velocity”. The position of the agents is then calculated 
+                        between the distance of their current location and their placements. Depending on the sub-functions, this would 
+                        result in the agents going to their place or running away from them. Where the desired velocity takes place is 
+                        when the agents are in a certain distance of their pathing, the calculation for the desired velocity will then 
+                        slightly update agents’ speed and maximum force on return.
+                        <br />
+                        <br />
+                        In terms of audio, two P5 functions that is specific for sound manipulation has been used. The first function is 
+                        called P5.FFT (Fast Fourier Transform) which was used to render the spectrum and the waveform graphs while the second 
+                        function is called P5.Aplitude which was used to animate the agents to go with the beat. P5.Aplitude allows the developer 
+                        to fetch the level/volume of the audio which then can be used. For instance, when the audio hits a peak 
+                        (i.e. a spike through the level/volume), it will then increase the size of the agents.
+                        <br />
+                        <br />
+                        Finally in terms of user interaction, as explained earlier, the user is able to interact with the agents by hovering their 
+                        cursor over them. Basic colour lerping has also been implemented within the x-axis of the canvas. A number of GUIs has been 
+                        developed to allow the user to customise the spectrum graph, the waveform graph, the dimensions of the agents and toggling 
+                        whether to display the track information on the bottom right to display or not. These are created by using P5.GUI as well 
+                        as setting up multiple global variables which are linked between the components and the GUI itself.
                     </p>
 
-                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/shape_and_patterns/Main%20Exercises/Ex.2_Trigonometry" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
+                    <a href="https://github.com/N00172468/Y4_Porfolio_Creative_Computing_Module/tree/master/js/concept_of_agents/Main%20Exercises/CA2" target="_blank" class="btn btn-primary btnBackgroundProjectPage">
                         Link to Full Codes
                     </a>
                 </div>
 
                 <div class="col-6">
                     <pre><code class="js card-text cyan cardBody">
-                        for (let y = 0; y < row; y++) {
-                            for (let x = 0; x < col; x++) {
-                                push();
-                                    translate(x * spaceWidth + spaceWidth/2, y * spaceHeight + spaceHeight/2);
-                                    let rotateVal = atan2(mouseY - transValY, mouseX - transValX);
-                                    rotate(rotateVal);
-                    
-                                    stroke(lerpColor(fromColour, toColour, x * y / 32));
-                                    strokeWeight(5);
-                                    strokeCap(ROUND);
-                                    fill(lerpColor(fromColour, toColour, x * y / 32));
-                                    rect(0, 0, 100, 100);
-                                pop();
+                        /**
+                        * ------------- SHOW FUNCTION: -------------
+                        */
+                        show() {
+                            let rms = analyser.getLevel(); // rms = Root Mean Square amplitude
+                            let fromColour = color(255, 0, 0);
+                            let toColour = color(0, 0, 255);
+                            let lerpMap = map(mouseX, 0, width, 0, 1.0);
+                            let activateLerp = lerpColor(fromColour, toColour, lerpMap);
+
+                            strokeWeight(strokeThickness);
+                            fill(activateLerp);
+                            
+                            if (isPlaying === true) {
+                            rectMode(CENTER);
+                            strokeWeight(strokeThickness / 5);
+                            stroke(0);
+
+                            rect(this.pos.x, this.pos.y, agentSize + rms * amplitudeLevel, agentSize + rms * amplitudeLevel); // Connecting agentSize and the rms by the amplitude level will allow the agents to "dance" to the beat of the track.
+                            } else {
+                            stroke(255);
+                            rect(this.pos.x, this.pos.y, agentSize, agentSize);
                             }
+
+                        }
+
+
+
+                        /**
+                        * ------------- BEHAVIOUR FUNCTION: -------------
+                        */
+                        behaviours() {
+                            // Agents finding and "flocking" their places:
+                            let arrive = this.arriveAtPlace(this.target);
+                            arrive.mult(1); // Weight of agents flocking
+                            this.applyForce(arrive);
+
+                            // Agents "flying away" from their places:
+                            let mouseInteraction = createVector(mouseX, mouseY);
+                            let fly = this.flyAway(mouseInteraction);
+                            fly.mult(10); // Weight of agents flying away
+                            this.applyForce(fly);
+                        }
+
+
+
+                        /**
+                        * ------------- APPLY FORCE FUNCTION: -------------
+                        * Sub-function of "Behaviour"
+                        */
+                        applyForce(f) {
+                            this.acc.add(f);
+                        }
+
+
+
+                        /**
+                        * ------------- ARRIVE AT PLACE FUNCTION: -------------
+                        * Sub-function of "Behaviour"
+                        */
+                        arriveAtPlace(targ) {
+                            let wantedVel = p5.Vector.sub(targ, this.pos);
+                            let dist = wantedVel.mag();
+                            let speed = this.maxSpeed;
+
+                            if (dist < 100) {
+                            speed = map(dist, 0, 100, 0, this.maxSpeed);
+                            }
+                            
+                            wantedVel.setMag(speed);
+
+                            let flock = p5.Vector.sub(wantedVel, this.vel);
+                            flock.limit(this.maxForce);
+                            return flock;
+                        }
+
+
+
+                        /**
+                        * ------------- FLY AWAY FUNCTION: -------------
+                        * Sub-function of "Behaviour"
+                        */
+                        flyAway(targ) {
+                            let wantedVel = p5.Vector.sub(targ, this.pos);
+                            let dist = wantedVel.mag();
+
+                            if (dist < 50) {
+                            wantedVel.setMag(this.maxSpeed);
+                            wantedVel.mult(-1);
+
+                            let flock = p5.Vector.sub(wantedVel, this.vel);
+                            flock.limit(this.maxForce);
+                            return flock;
+                            } else {
+                            return createVector(0, 0);
+                            }
+                        }
                         }
                     </code></pre>
                 </div>
