@@ -100,6 +100,12 @@
 - Additional library such as opentype.js is used in conjunction with P5.js to preload and build the font characters using their data types.
 
 ### Production Demonstration (CA2)
-- Using the combination of the previous projects, a production demonstration was created for a music track.
-- Various libraries and built-in functions such as P5.FTT and P5.Aplitude for audio as well as P5.GUI for additional user interactions were used to create this project.
-- Track used was "Galvanize" by The Chemical Brothers.  
+- An interactive production demo for the track "Galvanize" by The Chemical Brothers.
+- Features:
+	- intelligent agents, 
+	- flocking/steering algorithm, 
+	- font packing,
+	- audio interaction via P5.FFT and P5.Amplitude,
+	- User interactivity with mouse cursor to agents,
+	- User interactivity with GUIs (Spectrum Graph settings, Waveform settings, Agent Dimensions settings, Track Information toggler).
+- Note: To run this specific project in your local PC, you must have Live Server enabled within your code editor.  
